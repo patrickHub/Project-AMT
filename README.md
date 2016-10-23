@@ -30,7 +30,19 @@ app at the http://localhost:9090/Project-AMT-1.0-SNAPSHOT/ url.
 - Phpmyadmin login is root and the password is P@trick29
 
 You can make http request to the app by using Postman if you already have one install in you computer. Clik on the link below and you will import the prepared http request that you can make to save user, to get all the users or a sngle user by his id, to update and to delete a user by his id. This is done test REST api. You should notice that that if you get user by enter an id or a login which don't exist, an error will be throw in the server logs to let you nown that the ressource don't exist. The same thing happens when you register a user with a login that already exist in the database. Then when you make a request, always get to looks in the server log's to be sure that everything goes succefully. 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/9568f96cf888f39e5db9#?env%5Bget%5D=W3sia2V5IjoiVVJMX1BSRUZJWCIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL1Byb2plY3QtQU1ULTEuMC1TTkFQU0hPVCIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZX1d)
+<div class="postman-run-button"
+data-postman-action="collection/import"
+data-postman-var-1="9568f96cf888f39e5db9"
+data-postman-param="env%5BProject-AMT%5D=W3sidHlwZSI6InRleHQiLCJlbmFibGVkIjp0cnVlLCJrZXkiOiJVUkxfUFJFRklYIiwidmFsdWUiOiJodHRwOi8vbG9jYWxob3N0OjkwOTAvUHJvamVjdC1BTVQtMS4wLVNOQVBTSE9UIn0seyJrZXkiOiIiLCJ2YWx1ZSI6IiIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZX1d"></div>
+<script type="text/javascript">
+  (function (p,o,s,t,m,a,n) {
+    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+      (n = o.createElement("script")),
+      (n.id = s+t), (n.async = 1), (n.src = m), n
+    ));
+  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+</script>
 
 ## Modifying the code
 
