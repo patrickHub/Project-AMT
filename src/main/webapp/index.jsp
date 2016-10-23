@@ -49,7 +49,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               
-              <span class="hidden-xs">"${login}"</span>
+              <span class="hidden-xs">Connected</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -323,7 +323,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright © 2014-2016 <a href="http://almsaeedstudio.com">Heig-vd</a>.</strong> All rights
+    <strong>Copyright © 2016-2017 <a href="http://heig-vd.ch">Heig-vd</a>.</strong> All rights
     reserved.
   </footer>
 

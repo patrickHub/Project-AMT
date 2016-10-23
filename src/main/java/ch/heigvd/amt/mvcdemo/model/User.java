@@ -31,6 +31,7 @@ public class User {
      * @param password the password user
      */
     public User(int id, String email, String login, String password) {
+        this.id = id;
         this.email = email;
         this.login = login;
         this.password = password;

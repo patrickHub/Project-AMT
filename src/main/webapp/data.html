@@ -114,15 +114,15 @@
                 <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                   <thead>
                   <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Email</th>
-                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Login</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">login</th>
+                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">email</th>
                   </thead>
                   <tbody>
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th rowspan="1" colspan="1">Email</th>
-                      <th rowspan="1" colspan="1">Login</th>
+                      <th rowspan="1" colspan="1">login</th>
+                      <th rowspan="1" colspan="1">email</th>
                     </tr>
                   </tfoot>
               </table></div></div></div>
@@ -145,7 +145,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright © 2014-2016 <a href="http://almsaeedstudio.com">Heig-vd</a>.</strong> All rights
+    <strong>Copyright © 2016-2017 <a href="http://heig-vd.ch">Heig-vd</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -365,7 +365,7 @@
   $(function () {
     $('#example2').DataTable({
       ajax: {
-        url: "/api/users",
+        url: "/api/users/1",
         dataSrc:""
       },
       columns: [

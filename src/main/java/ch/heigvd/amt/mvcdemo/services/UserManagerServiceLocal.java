@@ -21,9 +21,6 @@ public interface UserManagerServiceLocal {
      * @throws ResourceNotFoundException
      */
     public int registerUser(User user) throws DuplicateResourceException, ResourceNotFoundException;
-    public void updateUser(String login, String password) throws ResourceNotFoundException;
-    public void updateUser(int id, String login) throws ResourceNotFoundException, DuplicateResourceException;
-    public void updateUser(int id, String login, String password) throws ResourceNotFoundException, DuplicateResourceException;
 
     /**
      * @description methode to update the user attributes that owne the id gived in parameter
@@ -40,7 +37,7 @@ public interface UserManagerServiceLocal {
      * @param password user password
      * @return User
      */
-    public User getUser(String login, String password);
+    public User getUser(String login, String password) throws ResourceNotFoundException;
     /**
      * @description methode to get user that owne the id gived in parameter
      * @param id user id

@@ -11,8 +11,6 @@ ch\heigvd\amt\mvcdemo\rest\UserRessource.class
 ch\heigvd\amt\mvcdemo\services\DuplicateResourceException.class
 ch\heigvd\amt\mvcdemo\web\AuthorizationFilter.class
 ch\heigvd\amt\mvcdemo\web\IndexServlet.class
-ch\heigvd\amt\mvcdemo\services\AuthorizationManagerServiceLocal.class
 ch\heigvd\amt\mvcdemo\services\UserManagerServiceLocal.class
 ch\heigvd\amt\mvcdemo\services\TestDataService.class
 ch\heigvd\amt\mvcdemo\services\TestDataServiceLocal.class
-ch\heigvd\amt\mvcdemo\services\AuthorizationManagerService.class

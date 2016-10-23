@@ -16,32 +16,54 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Patrick-PC on 12.10.2016.
+ * @author Patrick Deslé Djomo
+ * @version 1.0
+ * @Description This servlet is used to manage the http request to register a user,
+ *              when a request url contains "register",  this servlet will catch the request and
+ *              forward a response according to the request method.
  */
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 
+    // injection dependency
     @EJB
     UserManagerServiceLocal userManagerService;
+
+    /**
+     * @description This fonction will be used by the servlet to manage every http request with post method.
+     * @param request http request
+     * @param response http response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // TODO Auto-generated method stub
+        // we get users proprities
         String email = request.getParameter("email");
         String login = request.getParameter("login");
         String pwd = request.getParameter("pwd");
 
         try {
+            // we register the user
             userManagerService.registerUser(new User(email, login, pwd));
         } catch (DuplicateResourceException e) {
             e.printStackTrace();
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
         }
-
+        // then will draw the user main page index.jsp
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * @description This fonction will be used by the servlet to manage every http request with get method.
+     * @param request http request
+     * @param response http response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/register.jsp").forward(request, response);
     }
 }

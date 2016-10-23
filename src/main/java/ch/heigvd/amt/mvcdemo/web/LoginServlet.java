@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
 /**
- * Servlet implementation class LoginServlet
+ * @author Patrick Deslé Djomo
+ * @version 1.0
+ * @Description This servlet is used to manage the http request to authenticate a user,
+ *              when a request url contains "/login",  this servlet will catch the request and
+ *              forward a response according to the request method.
  */
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -22,6 +26,13 @@ public class LoginServlet extends HttpServlet {
     private UserManagerServiceLocal userManagerService;
 
 
+    /**
+     * @description This fonction will be used by the servlet to manage every http request with get method.
+     * @param request http request
+     * @param response http response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,6 +40,13 @@ public class LoginServlet extends HttpServlet {
 
     }
 
+    /**
+     * @description This fonction will be used by the servlet to manage every http request with post method.
+     * @param request http request
+     * @param response http response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,11 +54,13 @@ public class LoginServlet extends HttpServlet {
         String login = request.getParameter("login");
         String pwd = request.getParameter("pwd");
         User user = null;
-        user = userManagerService.getUser(login, pwd);
-        if(user != null){
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+        try {
+            // We make sure the user exist
+            user = userManagerService.getUser(login, pwd);
+            request.getRequestDispatcher("index.jsp").forward(request, response); // if yes then we direct him to the main page index.jsp
             return;
+        }catch (ResourceNotFoundException e) { // if not we remain to the same login page
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
     }
 }

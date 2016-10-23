@@ -27,8 +27,7 @@ public class UserManagerService implements UserManagerServiceLocal {
     //dependency injection
     @Resource(lookup = "java:/jdbc/MCVDemo")
     private DataSource dataSource;
-
-    private static final Logger LOG = Logger.getLogger(UserRessource.class.getName());
+    private static final Logger LOG = Logger.getLogger(UserManagerService.class.getName());
 
     /**
      * @description methode to save a new user to database
@@ -39,7 +38,7 @@ public class UserManagerService implements UserManagerServiceLocal {
      */
     @Override
     public int registerUser(User user) throws DuplicateResourceException{
-
+        int id = 0;
         try { // we check weither the login already existed
             if(getUser(user.getLogin()) != null){
                 throw new DuplicateResourceException();
@@ -61,75 +60,14 @@ public class UserManagerService implements UserManagerServiceLocal {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-        }
-
-        return getUser(user.getLogin(), user.getPassword()).getId();
-    }
-
-    @Override
-    public void updateUser(String login, String password) throws ResourceNotFoundException {
-        getUser(login); // we check if the login exist. if not RessourceNotFoundException will be throw
-        String sql = "UPDATE user SET password = ?" +
-                     "WHERE login = ?";
-        try (Connection con = dataSource.getConnection();
-             PreparedStatement prepStat = con.prepareStatement(sql)){
-            prepStat.setString(1, password);
-            prepStat.setString(2, login);
-            prepStat.executeUpdate();
-            prepStat.close();
-            con.close();
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void updateUser(int id, String login) throws ResourceNotFoundException, DuplicateResourceException {
-        getUser(id);  // we check if the id exist. if not RessourceNotFoundException will be throw
-        try {
-            if(getUser(login) != null){
-                throw new DuplicateResourceException();
-            }
-        } catch (ResourceNotFoundException e) {
-
-            String sql = "UPDATE user SET login = ?" +
-                    "WHERE userID = ?";
-            try (Connection con = dataSource.getConnection();
-                 PreparedStatement prepStat = con.prepareStatement(sql)){
-                prepStat.setString(1, login);
-                prepStat.setInt(2, id);
-                prepStat.executeUpdate();
-                prepStat.close();
-                con.close();
-            }catch (SQLException ex) {
-                throw new RuntimeException(ex);
+            try {
+                id = getUser(user.getLogin(), user.getPassword()).getId();
+            }catch (ResourceNotFoundException exc){
+                throw new RuntimeException(exc);
             }
         }
 
-    }
-
-    @Override
-    public void updateUser(int id, String login, String password) throws ResourceNotFoundException, DuplicateResourceException {
-        getUser(id);  // we check if the id exist. if not RessourceNotFoundException will be throw
-        try {
-            if(getUser(login) != null){
-                throw new DuplicateResourceException();
-            }
-        } catch (ResourceNotFoundException e) {
-            String sql = "UPDATE user SET login = ?, password = ?" +
-                         "WHERE userID = ?";
-            try (Connection con = dataSource.getConnection();
-                 PreparedStatement prepStat = con.prepareStatement(sql)){
-                prepStat.setString(1, login);
-                prepStat.setString(2, password);
-                prepStat.setInt(3, id);
-                prepStat.executeUpdate();
-                prepStat.close();
-                con.close();
-            }catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        }
+        return id;
     }
 
     /**
@@ -266,10 +204,10 @@ public class UserManagerService implements UserManagerServiceLocal {
      * @return User
      */
     @Override
-    public User getUser(String login, String password){
+    public User getUser(String login, String password) throws ResourceNotFoundException {
 
         //SQL query
-        String sql = "SELECT email, login, password " +
+        String sql = "SELECT userID, email, login, password " +
                 "FROM user " +
                 "WHERE login = ? AND password = ?";
         User user = null;
@@ -280,8 +218,10 @@ public class UserManagerService implements UserManagerServiceLocal {
             prepstmt.setString(2, password);
 
             ResultSet set = prepstmt.executeQuery(); // we submit the SQL connection
-            set.next();
-            user = new User(set.getString("email"), set.getString("login"), set.getString("password"));
+            if(!set.next()){ // we check weither we have been able to get the user with the login and password
+                throw new ResourceNotFoundException();
+            }
+            user = new User(set.getInt("userID"), set.getString("email"), set.getString("login"), set.getString("password"));
             prepstmt.close();
             con.close(); // we return the connnection to the pool
         }

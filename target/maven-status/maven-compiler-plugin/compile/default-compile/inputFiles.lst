@@ -1,6 +1,5 @@
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\rest\UserRessource.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\web\UserDataServlet.java
-A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\services\AuthorizationManagerService.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\rest\RESTApplication.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\services\TestDataService.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\web\LoginServlet.java
@@ -15,4 +14,3 @@ A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\services\ResourceNotFoundExc
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\web\IndexServlet.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\services\UserManagerService.java
 A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\web\AuthorizationFilter.java
-A:\AMT\MVCDemo1\src\main\java\ch\heigvd\amt\mvcdemo\services\AuthorizationManagerServiceLocal.java

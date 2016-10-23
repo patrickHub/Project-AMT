@@ -1,7 +1,5 @@
 package ch.heigvd.amt.mvcdemo.web;
 
-import ch.heigvd.amt.mvcdemo.services.AuthorizationManagerServiceLocal;
-
 import javax.ejb.EJB;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -15,18 +13,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Patrick-PC on 05.10.2016.
+ * @author Patrick Deslé Djomo
+ * @version 1.0
+ * @Description This filter is used to make sure that protected ressource are get only by the authenticate user
  */
 @WebFilter(filterName = "AuthorizationFilter")
 public class AuthorizationFilter implements Filter {
-    @EJB
-    private AuthorizationManagerServiceLocal authorizationManagerService;
     private String errorPage;
     public void destroy() {
     }
 
     private static final Set<String> ALLOWED_PATHS = Collections.unmodifiableSet(new HashSet<>(
-            Arrays.asList("/bootstrap", "/dist", "/plugins", "/login", "/logout", "/register")));
+            Arrays.asList("/bootstrap", "/dist", "/plugins", "/login", "/logout", "/register", "/api/users")));
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
@@ -46,31 +44,14 @@ public class AuthorizationFilter implements Filter {
                 break;
             }
         }
-        chain.doFilter(request, response);
-       /* if (allowedPath) {
+        if (allowedPath) {
             chain.doFilter(request, response);
         }else if (currentLogin == null && currentPassword == null){
             request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
         }else{
             chain.doFilter(request, response);
-        }*/
-        /*else {
+        }
 
-            //Invoke AuthorizationManagerServiceLocal method to see if user can
-            //access resource.
-            boolean authorized = false;
-            try {
-                authorized = authorizationManagerService.isUserAuthorized(currentLogin, currentPassword, URI);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            if (authorized) {
-                request.getRequestDispatcher(URI).forward(request,response);
-            }
-            else {
-                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request,response);
-            }
-        }*/
     }
 
     private boolean isProtected(String url){

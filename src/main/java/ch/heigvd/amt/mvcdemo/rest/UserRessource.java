@@ -57,7 +57,7 @@ public class UserRessource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserDTO getUserById(@PathParam("id") int id){
+    public UserDTO getUserById(@PathParam("id") int id) {
         UserDTO user = null;
         try {
             user = toDTO(userManagerService.getUser(id));
@@ -94,20 +94,22 @@ public class UserRessource {
     @PUT
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void updateUser(@PathParam("id") int id, UserPasswordDTO user)
+    public UserDTO updateUser(@PathParam("id") int id, UserPasswordDTO user)
     {
+        UserDTO userUpdate = null;
         try {
             userManagerService.updateUser(id, fromDTO(user));
+            userUpdate = toDTO(userManagerService.getUser(id));
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
         } catch (DuplicateResourceException e) {
             e.printStackTrace();
         }
-
+        return userUpdate;
     }
 
     /**
-     * @description this mehtide is used to delete a user in the DB will his id
+     * @description this methode is used to delete a user in the DB will his id
      * @param id user id
      */
     @DELETE
