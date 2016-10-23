@@ -26,21 +26,14 @@ When you open the wilfly Console admin You will find 1 apps (Project-AMT-1.0-SNA
 app at the http://localhost:9090/Project-AMT-1.0-SNAPSHOT/ url.
 
 ## Detailed information
-- The first time that you open the app on you navigator, the will requered you to authenticated. you can create your a new user or can   authenticate your self by patrick as username and patrick as password.
+- The first time that you open the app on you navigator, the app will requered you to authenticated. you can create your a new user or can authenticate your self by enter patrick as username and patrick as password.
 - Phpmyadmin login is root and the password is P@trick29
 
-You can make http request to the app by using Postman if you already have one in you computer. Clik on the link below and you will import the prepared http request that you can make to save user, to get all the users or a sngle user by his id, to update and to delete a user by his id.
+You can make http request to the app by using Postman if you already have one install in you computer. Clik on the link below and you will import the prepared http request that you can make to save user, to get all the users or a sngle user by his id, to update and to delete a user by his id. This is done test REST api. You should notice that that if you get user by enter an id or a login which don't exist, an error will be throw in the server logs to let you nown that the ressource don't exist. The same thing happens when you register a user with a login that already exist in the database. Then when you make a request, always get to looks in the server log's to be sure that everything goes succefully. 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/9568f96cf888f39e5db9#?env%5Bget%5D=W3sia2V5IjoiVVJMX1BSRUZJWCIsInZhbHVlIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL1Byb2plY3QtQU1ULTEuMC1TTkFQU0hPVCIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZX1d)
 
 ## Modifying the code
 
 You can also look at the code of the apps and change it, The easiest way is use IntelliJ open the project as an existing project. Then clean and build the app to get the .war file and you will be able to upload it via the console.
 
-## Deploying the apps automatically
-
-There are different ways to deploy .war files. The details are specific to every app server, but in general, there are 3 ways:
-
-* use the web console: good for this demo but not used in practice
-* use of a Command Line Interface tool (e.g. `asadmin` for Glassfish): used a lot in "traditional" production environments
-* copy of the .war file in a special directory monitored by the server (autodeploy): very interesting when combined with Docker
 
