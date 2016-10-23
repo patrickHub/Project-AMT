@@ -4,7 +4,7 @@
 
 This repo contains artifacts to illustrate  java EE development cycle:
 
-* **developers** You should have a Docker-Compose or Docker Toolbox in your environnment computer (such as Windows 10) execute the app on the server.
+* **developers**  You should have a Docker-Compose or Docker Toolbox in your environnment computer (such as Windows 10) to execute the app on the server.
 
 ## Quick start
 
